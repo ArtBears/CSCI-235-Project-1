@@ -2,7 +2,6 @@
 #include <time.h>       /* time */
 #include <algorithm> /* for shuffling an array */
 #include <iostream>
-#include <vector>
 #include "./Inventory.h"
 using namespace std;
 
@@ -23,6 +22,7 @@ Inventory::Inventory() {
         cin.clear();
         cin.ignore(256,'\n');
         cin >> seed;
+	// user gets stuck in here if no integer
   }
   
   models = randomize(20,5,seed);
