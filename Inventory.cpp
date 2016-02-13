@@ -86,7 +86,7 @@ void Inventory::setCorpInventory() {
   
   cout << "set the corporation's inventory" << endl;
   for (int i = 0; i < 20; i++) {
-    corpInventory[0] = randomizeStatic(2000,600);    
+    corpInventory[i] = randomizeStatic(2000,600);    
     cout << (to_string(i) + ": ")  << to_string(corpInventory[i]) << endl;
   }
   
