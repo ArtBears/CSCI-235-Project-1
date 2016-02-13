@@ -30,20 +30,7 @@ int Inventory::randomize(int upperBound, int lowerBound) {
 Inventory::Inventory() {
 
   // generate random number of models from 5 to 20
-  int seed;
-  cout << "Pick a random integer to generate a store's models" << endl;
-  cin >> seed;
-  while(cin.fail()) {
-        cerr  << "Error! that's not an integer choose again!" << endl;
-        cin.clear();
-        cin.ignore(256,'\n');
-        cin >> seed;
-	// user gets stuck in here if no integer
-  }
-  
   models = randomize(20,5);
-
-  cout << endl;
   cout << "there are " << models << " models" << endl;
 
   // preinitialize stock array to -1 => NOT carrying a model
@@ -51,13 +38,13 @@ Inventory::Inventory() {
   
   // initialize stock and shuffle
   for (int i = 0; i < models; i++) {
-    // set stock between 1 and 75  
+    // set stock entries to random numbers between 1 and 75  
     int initStock = randomize(75,1);
     stock[i] = initStock;  
   } 
   
 
-  // randomize stock array
+  // shuffle the entries of the stock array
   random_shuffle(begin(stock),end(stock));
 
   cout << "the shuffled stock array (after random shuffle): " << endl;
