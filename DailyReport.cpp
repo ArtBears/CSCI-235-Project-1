@@ -42,9 +42,9 @@ int main (int argc, char* argv[]) {
        << "Insert a number between 30 and 50: "
        << endl;
 
-  do{
+  do {
     getUserInput(numOfStores);
-  }while(numOfStores < 30 || numOfStores > 50 );
+  } while(numOfStores < 30 || numOfStores > 50 );
   
   // initialize all the store objects and store in some container
   // the Inventory constructor will ...

@@ -85,18 +85,9 @@ int Inventory::randomizeStatic(int upperBound, int lowerBound) {
 void Inventory::setCorpInventory() {
   
   cout << "set the corporation's inventory" << endl;
-  for (int i = 500; i < 520; i++) {
-    int corpInventoryIndex = i - 500;
-    corpInventory[corpInventoryIndex] = randomizeStatic(2000,600);    
-    cout << (to_string(corpInventoryIndex) + ": ")  << to_string(corpInventory[corpInventoryIndex]) << endl;
-  }
-  
-  /*
-  cout << "the corporations current inventory for each model is :" << endl; 
   for (int i = 0; i < 20; i++) {
-    cout << i << ": " + corpInventory[i] << endl;
+    corpInventory[0] = randomizeStatic(2000,600);    
+    cout << (to_string(i) + ": ")  << to_string(corpInventory[i]) << endl;
   }
-  */
-  
   
 }
