@@ -27,14 +27,16 @@ void getUserInput(int &output){
 
 int main (int argc, char* argv[]) { 
 
-  Inventory store1 = *(new Inventory());
-  
   // set the whole corporation's inventory for models 0 ... 19
   // to a random number between 600 and 2000 for all stores
-  // (static method setting a static variable)
-  // NOTE: cannot be called w/o instantiation of an object
-  store1.setCorpInventory();
-
+  // NOTE: best case is setting corpInventory w/o instantiation of an object
+  // Inventory::setCorpInventory();
+  
+  Inventory store1 = *(new Inventory());
+  store1.salesSimulation();
+  cout << to_string(store1.getModelsSold(4)) << " model fives sold!" << endl;
+  cout << "total sales: " << "$" << to_string(store1.getDailySales()) << endl;
+ 
   // static data should be pre-initialized in implementation file Inventory.cpp
 
   int numOfStores;

@@ -4,9 +4,10 @@
 
 class Inventory {
  public:
-  static void setCorpInventory();
+
+  // non-static funcs
   void salesSimulation();
-  
+
   // getters
   int getDailySales();
   int getModelsSold(int mdl);
@@ -16,12 +17,17 @@ class Inventory {
   friend int* grossDailyUpdate();
   friend int* grossSales();
   
+  // static funcs
+  static void setCorpInventory();
+  
+  
   // constructor
   Inventory();
 
  private:
 
   // functions
+  
   // non-static => particular to a given instance
   int randomize(int upperBound,int lowerBound);
   
@@ -29,8 +35,8 @@ class Inventory {
   static int randomizeStatic(int upperBound,int lowerBound);
   
   // data
-  static int corpInventory[20];
-  static int corpQtySold[20];
+  
+  // non-static
   int models;
   // preinitialize all stock entries to -1 upon calling the constructor 
   // NOTE: see 'std::fill_n'
@@ -38,5 +44,9 @@ class Inventory {
   // preinitialize all sold entries to 0 => not being sold
   int sold[20] = {0};
   int money;
+  
+  // static
+  static int corpInventory[20];
+  static int corpQtySold[20];
   
 };

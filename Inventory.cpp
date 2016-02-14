@@ -1,5 +1,4 @@
-#include <stdlib.h>     /* srand, rand */
-#include <time.h>       /* time */
+#include <stdlib.h>
 #include <algorithm> /* for shuffling an array */
 #include <iostream>
 #include <random> /* C++11 random number generator */
@@ -59,6 +58,7 @@ Inventory::Inventory() {
 
 // static data
 int Inventory::corpInventory[20] = {0};
+int Inventory::corpQtySold[20] = {0};
 
 // static methods
 
@@ -91,3 +91,38 @@ void Inventory::setCorpInventory() {
   }
   
 }
+
+int Inventory::getModelsSold(int mdl) {
+  if (mdl < 0 || mdl > 19) {
+    cerr << "Error. There are 20 models. Pick a number between 0 and 19." << endl;
+    exit(EXIT_FAILURE);
+  }  
+  return sold[mdl];
+}
+void Inventory::salesSimulation() {
+  for (int i = 0; i < 20; i++) {
+    if (stock[i] != -1) {
+      // expresses buying as a random behavior
+      // for each model being sold, 0 through the maximum held in stock (a number 1 - 75) can be sold in one day by any particular store
+      sold[i] = randomize(stock[i],0);
+      // update daily sales company wide for this one store
+      corpQtySold[i] += sold[i];
+    }
+  }
+  
+  // print the sales array
+  cout << "the sales array: " << endl;
+  for (int i = 0; i < 20; i++) {
+    cout << sold[i] << endl;
+  }
+}
+
+int Inventory::getDailySales() {
+  int total = 0;
+  for (int i = 0; i < 20; i++) {
+    total += (sold[i]*5);
+  }
+  return total;
+}
+
+
