@@ -28,22 +28,17 @@ class Inventory {
 
   // functions
   
-  // non-static => particular to a given instance
-  int randomize(int upperBound,int lowerBound);
-  
-  // static => method for shared data among the instances
-  static int randomizeStatic(int upperBound,int lowerBound);
+  int randomize(int upperBound,int lowerBound);  // non-static => particular to a given instance
+  static int randomizeStatic(int upperBound,int lowerBound);  // static => method for shared data among the instances
   
   // data
   
   // non-static
   int models;
-  // preinitialize all stock entries to -1 upon calling the constructor 
-  // NOTE: see 'std::fill_n'
-  int stock[20];
-  // preinitialize all sold entries to 0 => not being sold
-  int sold[20] = {0};
   int money;
+  int stock[20];         // preinitialize all stock entries to -1 upon calling the constructor 
+  int sold[20] = {0};   // preinitialize all sold entries to 0 => not being sold
+
   
   // static
   static int corpInventory[20];
