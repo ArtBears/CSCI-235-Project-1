@@ -46,6 +46,10 @@ int main (int argc, char* argv[]) {
   Inventory::setCorpInventory();
   Inventory::setCorpQtySold(0);
 
+  int *mods;
+  int *sales;
+  int totalSales = 0;
+  int totalShirtsSold = 0;
   int choice1;
   int menuChoice;
   int numOfStores;
@@ -81,24 +85,32 @@ int main (int argc, char* argv[]) {
              << " sold "
              << stores[i].getModelsSold(menuChoice) 
              << " shirts"
-             << "and made $"
+             << " and made $"
              << stores[i].getModelsSold(menuChoice) * 5
              << "\t"; 
       }
       break;
     case 3:
       Inventory::getMenuChoice(choice1);
-      
+      mods = grossDailyQtySold();
+      sales = grossSales();
+      for (int i = 0; i < 20; i++) {
+        totalShirtsSold += mods[i];
+        totalSales += sales[i];
+        cout << "Hunter Inc. sold " 
+             << mods[i] 
+             << " of shirt model " 
+             << i 
+             << " and made $"
+             << sales[i]
+             << endl;
+      }
       break;
     case 4:
       exit(EXIT_SUCCESS);
       break;
   }
-  int *mods;
-  mods = grossSales();
-  for (int i = 0; i < 20; i++) {
-    cout << mods[i] << '\t';
-  }
+
   // initialize all the store objects and store in some container
   // the Inventory constructor will ...
   // 1) generate a random number from 5 to 20 for the number of models that particular store sells
