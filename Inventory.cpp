@@ -156,6 +156,14 @@ int Inventory::getDailySales() {
   return total;
 }
 
+void Inventory::getShirtCount(){
+  int shirtsAvailable = 0;
+  for(int i = 0; i < 20; i++){
+    shirtsAvailable += stock[i];
+  }
+  cout << "Shirts Available: " << shirtsAvailable << endl;
+}
+
 // constructor
 Inventory::Inventory() {
 

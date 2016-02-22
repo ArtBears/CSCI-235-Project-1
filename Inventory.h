@@ -10,6 +10,7 @@ class Inventory {
 
   // getters
   int getDailySales();
+  void getShirtCount();
   int getModelsSold(int mdl);
   
   // put friend functions here
@@ -33,7 +34,7 @@ class Inventory {
  private:
 
   // functions
-  
+   
   int randomize(int upperBound,int lowerBound);  // non-static => particular to a given instance
   static int randomizeStatic(int upperBound,int lowerBound);  // static => method for shared data among the instances
   

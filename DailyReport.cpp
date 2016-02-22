@@ -69,10 +69,22 @@ int main (int argc, char* argv[]) {
     case 1:
       Inventory::getMenuChoice(choice1);
       Inventory::printStoreInfo(menuChoice, numOfStores);
+      cout << "Shirts Sold: " << stores[menuChoice].getDailySales() / 5 << endl;
+      stores[menuChoice].getShirtCount();
+      cout << "Money Made: $" << stores[menuChoice].getDailySales() << endl;
       break;
     case 2:
       Inventory::getMenuChoice(choice1);
       Inventory::printModelInfo(menuChoice);
+      for(int i = 0; i < numOfStores ; i++){
+        cout << "Store "<< i+1 
+             << " sold "
+             << stores[i].getModelsSold(menuChoice) 
+             << " shirts"
+             << "and made $"
+             << stores[i].getModelsSold(menuChoice) * 5
+             << "\t"; 
+      }
       break;
     case 3:
       Inventory::getMenuChoice(choice1);
