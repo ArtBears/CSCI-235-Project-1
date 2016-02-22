@@ -1,0 +1,20 @@
+***2/20/16
+
+    Glyne- I've added a makefile that helps compile the code. Using this file is very 
+            easy. If you don't already have it, install make to your computer.
+                https://www.gnu.org/software/make/
+            You need to have a makefile in your directory that tells make how to compile
+            your code.
+            
+            Why is `make` needed?
+            
+            I have `make` set up so that it will always compile using c++11. It also has
+            some flags to make debugging clearer. Intead of having to type:
+            
+            g++ -std=c++11 Inventory -o Inventory.o
+            
+            you type: 
+            
+            make
+            
+            That's all! It will compile the files and output them as [filename].o
