@@ -19,7 +19,9 @@ class Inventory {
   
   // static funcs
   static void setCorpInventory();
-  
+  static void setCorpQtySold(int initial_value);
+  static void requestStoreAmt(int& output);
+  static void statMenu();
   
   // constructor
   Inventory();

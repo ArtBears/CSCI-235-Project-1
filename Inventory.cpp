@@ -5,17 +5,65 @@
 #include "./Inventory.h"
 using namespace std;
 
+// static behavior and state
+// NOTE: all static state is initialized before instantiation
+
+// static data
+int Inventory::corpInventory[20];
+int Inventory::corpQtySold[20];
+
+// static methods
+// static version; NOTE: no need for second 'static' keyword
+
+int Inventory::randomizeStatic(int upperBound, int lowerBound) {
+    // create a random device used to seed the random number generator mt 
+    random_device rd;
+    mt19937 mt(rd());
+    // create uniform distribution of reals
+    uniform_real_distribution<double> dist(lowerBound, upperBound);
+    // return 1 value at random from that uniform distribution
+    return dist(mt);
+}
+
+void Inventory::setCorpInventory() {
+  
+  cout << "set the corporation's inventory" << endl;
+  for (int i = 0; i < 20; i++) {
+    corpInventory[i] = randomizeStatic(2000,600);    
+    cout << (to_string(i) + ": ")  << to_string(corpInventory[i]) << endl;
+  }
+  
+}
+
+void Inventory::setCorpQtySold(int initial_value){
+	for(int i = 0; i < 20; i++){
+		corpQtySold[i] = initial_value;
+	}
+}
+
+void Inventory::requestStoreAmt(int& output){
+  cin >> output;
+  while(cin.fail()){
+    cerr << "Please input an integer:";
+    cin.clear();
+    cin.ignore(256, '\n');
+    cin >> output;
+  }
+  cin.clear();
+  cin.ignore(256, '\n');
+}
+
+void Inventory::statMenu(){
+  cout << "What would you like to see? " << endl
+       << "1) SHOW A STORE'S INVENTORY"<< endl
+       << "2) SHOW HOW MANY OF A SHIRT WERE SOLD TODAY"<< endl
+       << "3) SHOW HUNTER INC.'S GROSS SALES " << endl
+       << "4) QUIT"<< endl;
+}
+
 
 // non-static methods
 
-int* Inventory::grossDailyQtySold() {
-}
-
-int* Inventory::grossDailyUpdate() {
-}
-
-int* Inventory::grossSales() {
-}
 
 int Inventory::randomize(int upperBound, int lowerBound) {
     // create a random device used to seed the random number generator mt 
@@ -33,7 +81,7 @@ int Inventory::getModelsSold(int mdl) {
     exit(EXIT_FAILURE);
   }  
   return sold[mdl];
-}
+} // FIX THIS !!!!!
 
 void Inventory::salesSimulation() {
   for (int i = 0; i < 20; i++) {
@@ -61,6 +109,7 @@ int Inventory::getDailySales() {
   return total;
 }
 
+// constructor
 Inventory::Inventory() {
 
   // generate random number of models from 5 to 20
@@ -80,40 +129,10 @@ Inventory::Inventory() {
 
   // shuffle the entries of the stock array
   random_shuffle(begin(stock),end(stock));
-
-  cout << "the shuffled stock array (after random shuffle): " << endl;
-  for (int i = 0; i < 20; i++) {
-    cout << stock[i] << endl;
-  } 
-  
-}
-
-// static behavior and state
-// NOTE: all static state is initialized before instantiation
-
-// static data
-int Inventory::corpInventory[20] = {0};
-int Inventory::corpQtySold[20] = {0};
-
-// static methods
-// static version; NOTE: no need for second 'static' keyword
-
-int Inventory::randomizeStatic(int upperBound, int lowerBound) {
-    // create a random device used to seed the random number generator mt 
-    random_device rd;
-    mt19937 mt(rd());
-    // create uniform distribution of reals
-    uniform_real_distribution<double> dist(lowerBound, upperBound);
-    // return 1 value at random from that uniform distribution
-    return dist(mt);
-}
-
-void Inventory::setCorpInventory() {
-  
-  cout << "set the corporation's inventory" << endl;
-  for (int i = 0; i < 20; i++) {
-    corpInventory[i] = randomizeStatic(2000,600);    
-    cout << (to_string(i) + ": ")  << to_string(corpInventory[i]) << endl;
-  }
+  salesSimulation();
+  // cout << "the shuffled stock array (after random shuffle): " << endl;
+  // for (int i = 0; i < 20; i++) {
+  //   cout << stock[i] << endl;
+  // }
   
 }
