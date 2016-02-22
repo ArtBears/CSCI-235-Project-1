@@ -6,20 +6,20 @@
 using namespace std;
 
 
-/*** grossDailyQtySold(): ***
-  *
-  * Grabs each value from the corpQtySold
-  * and adds them together. Then returns
-  * the address of the result.
-**/
+// Grabs the value from the corpQtySold
+// and adds them together. Then returns
+// the address of the result.
 int* grossDailyQtySold() {
   return Inventory::corpQtySold;  
 }
 
+// Returns the corp Inventory
 int* grossDailyUpdate() {
   return Inventory::corpInventory;
 }
 
+// Returns an array that holds
+// the amount made for each model
 int* grossSales() {
   static int modelSales[20];
   for(int i = 0; i < 20; i++){
@@ -29,21 +29,11 @@ int* grossSales() {
 }
 
 int main (int argc, char* argv[]) { 
-
-  // set the whole corporation's inventory for models 0 ... 19
-  // to a random number between 600 and 2000 for all stores
-  // NOTE: best case is setting corpInventory w/o instantiation of an object
-  // Inventory::setCorpInventory();
   
-  // int *dailyQtySold;   // pointer for grossDailyQtySold
-  // Inventory store1 = *(new Inventory());
-  // store1.salesSimulation();
-  // cout << to_string(store1.getModelsSold(4)) << " model fives sold!" << endl;
-  // cout << "total sales: " << "$" << to_string(store1.getDailySales()) << endl;
- 
-  // static data should be pre-initialized in implementation file Inventory.cpp
-
+// Set the whole corporation's inventory for models 0 ... 19
+// to a random number between 600 and 2000 for all stores
   Inventory::setCorpInventory();
+
   Inventory::setCorpQtySold(0);
 
   int *mods;
@@ -56,7 +46,7 @@ int main (int argc, char* argv[]) {
 
 // do run function -> if input is not #
 // function will make them run again
-// while the number is < 30 || >50
+// while the number is < 30 or > 50
 // clear the istream
 // re-run the function
   do {
@@ -66,15 +56,34 @@ int main (int argc, char* argv[]) {
     Inventory::requestStoreAmt(numOfStores);
   } while(numOfStores < 30 || numOfStores > 50 );
   
-  cout << numOfStores << endl;
+  cout << "\n You have created " 
+       << numOfStores 
+       << " stores."
+       << "\n\n";
+
+// initialize all the store objects and store in container stores
+  
+// The Inventory constructor will ...
+// 1) generate a random number from 5 to 20 for the number of models that particular    store sells
+// 2) pre-initialize the stock array entries to -1 => NOT carrying a model
+// 3) initialize the stock array to random values between 1 and 75 for the 5 to 20      models that 
+//    particular store carries and shuffle the entries around at random
   Inventory* stores = new Inventory[numOfStores];
+
+// User Interaction Menu Options (Will exit if input is 4) 
   while(choice1 != 4){
     Inventory::statMenu(choice1);
 
+// Checks for 4 Cases:
+// 1) Show a stores inventory
+// 2) Show How many shirts were sold of a particular model
+// 3) Show Hunter Inc's gross sales
+// 4) Exit the program 
     switch(choice1){
       case 1:
         Inventory::getMenuChoice(choice1);
         Inventory::printStoreInfo(menuChoice, numOfStores);
+        cout << endl;
         cout << "Shirts Sold: " << stores[menuChoice].getDailySales() / 5 << endl;
         stores[menuChoice].getShirtCount();
         cout << "Money Made: $" << stores[menuChoice].getDailySales() << endl;
@@ -112,14 +121,7 @@ int main (int argc, char* argv[]) {
         exit(EXIT_SUCCESS);
         break;
     }
+    cout << endl;
 }
-
-  // initialize all the store objects and store in some container
-  // the Inventory constructor will ...
-  // 1) generate a random number from 5 to 20 for the number of models that particular store sells
-  // 2) pre-initialize the stock array entries to -1 => NOT carrying a model
-  // 3) initialize the stock array to random values between 1 and 75 for the 5 to 20 models that 
-  //    particular store carries and shuffle the entries around at random
-  // 4) print the shuffled stock array
 
 } 

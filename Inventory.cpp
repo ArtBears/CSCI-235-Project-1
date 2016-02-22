@@ -127,7 +127,7 @@ int Inventory::getModelsSold(int mdl) {
     exit(EXIT_FAILURE);
   }  
   return sold[mdl];
-} // FIX THIS !!!!!
+} 
 
 void Inventory::salesSimulation() {
   for (int i = 0; i < 20; i++) {
