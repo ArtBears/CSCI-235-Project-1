@@ -29,8 +29,7 @@ void Inventory::setCorpInventory() {
   
   cout << "set the corporation's inventory" << endl;
   for (int i = 0; i < 20; i++) {
-    corpInventory[i] = randomizeStatic(2000,600);    
-    cout << (to_string(i) + ": ")  << to_string(corpInventory[i]) << endl;
+    corpInventory[i] = randomizeStatic(2000,600);
   }
   
 }
@@ -140,12 +139,6 @@ void Inventory::salesSimulation() {
       corpQtySold[i] += sold[i];
     }
   }
-  
-  // print the sales array
-  cout << "the sales array: " << endl;
-  for (int i = 0; i < 20; i++) {
-    cout << sold[i] << endl;
-  }
 }
 
 int Inventory::getDailySales() {
@@ -165,11 +158,10 @@ void Inventory::getShirtCount(){
 }
 
 // constructor
-Inventory::Inventory() {
+Inventory::Inventory(){
 
   // generate random number of models from 5 to 20
   models = randomize(20,5);
-  cout << "there are " << models << " models" << endl;
 
   // preinitialize stock array to -1 => NOT carrying a model
   fill_n(stock,20,-1);
@@ -185,9 +177,5 @@ Inventory::Inventory() {
   // shuffle the entries of the stock array
   random_shuffle(begin(stock),end(stock));
   salesSimulation();
-  // cout << "the shuffled stock array (after random shuffle): " << endl;
-  // for (int i = 0; i < 20; i++) {
-  //   cout << stock[i] << endl;
-  // }
   
 }

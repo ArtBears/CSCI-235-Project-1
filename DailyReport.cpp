@@ -68,48 +68,51 @@ int main (int argc, char* argv[]) {
   
   cout << numOfStores << endl;
   Inventory* stores = new Inventory[numOfStores];
-  Inventory::statMenu(choice1);
-  switch(choice1){
-    case 1:
-      Inventory::getMenuChoice(choice1);
-      Inventory::printStoreInfo(menuChoice, numOfStores);
-      cout << "Shirts Sold: " << stores[menuChoice].getDailySales() / 5 << endl;
-      stores[menuChoice].getShirtCount();
-      cout << "Money Made: $" << stores[menuChoice].getDailySales() << endl;
-      break;
-    case 2:
-      Inventory::getMenuChoice(choice1);
-      Inventory::printModelInfo(menuChoice);
-      for(int i = 0; i < numOfStores ; i++){
-        cout << "Store "<< i+1 
-             << " sold "
-             << stores[i].getModelsSold(menuChoice) 
-             << " shirts"
-             << " and made $"
-             << stores[i].getModelsSold(menuChoice) * 5
-             << "\t"; 
-      }
-      break;
-    case 3:
-      Inventory::getMenuChoice(choice1);
-      mods = grossDailyQtySold();
-      sales = grossSales();
-      for (int i = 0; i < 20; i++) {
-        totalShirtsSold += mods[i];
-        totalSales += sales[i];
-        cout << "Hunter Inc. sold " 
-             << mods[i] 
-             << " of shirt model " 
-             << i 
-             << " and made $"
-             << sales[i]
-             << endl;
-      }
-      break;
-    case 4:
-      exit(EXIT_SUCCESS);
-      break;
-  }
+  while(choice1 != 4){
+    Inventory::statMenu(choice1);
+
+    switch(choice1){
+      case 1:
+        Inventory::getMenuChoice(choice1);
+        Inventory::printStoreInfo(menuChoice, numOfStores);
+        cout << "Shirts Sold: " << stores[menuChoice].getDailySales() / 5 << endl;
+        stores[menuChoice].getShirtCount();
+        cout << "Money Made: $" << stores[menuChoice].getDailySales() << endl;
+        break;
+      case 2:
+        Inventory::getMenuChoice(choice1);
+        Inventory::printModelInfo(menuChoice);
+        for(int i = 0; i < numOfStores ; i++){
+          cout << "Store "<< i+1 
+               << " sold "
+               << stores[i].getModelsSold(menuChoice) 
+               << " shirts"
+               << " and made $"
+               << stores[i].getModelsSold(menuChoice) * 5
+               << "\t"; 
+        }
+        break;
+      case 3:
+        Inventory::getMenuChoice(choice1);
+        mods = grossDailyQtySold();
+        sales = grossSales();
+        for (int i = 0; i < 20; i++) {
+          totalShirtsSold += mods[i];
+          totalSales += sales[i];
+          cout << "Hunter Inc. sold " 
+               << mods[i] 
+               << " of shirt model " 
+               << i + 1 
+               << " and made $"
+               << sales[i]
+               << endl;
+        }
+        break;
+      case 4:
+        exit(EXIT_SUCCESS);
+        break;
+    }
+}
 
   // initialize all the store objects and store in some container
   // the Inventory constructor will ...
