@@ -5,20 +5,20 @@
 class Inventory {
  public:
 
-  // non-static funcs
+// non-static funcs
   void salesSimulation();
 
-  // getters
+// getters
   int getDailySales();
   void getShirtCount();
   int getModelsSold(int mdl);
   
-  // put friend functions here
+// put friend functions here
   friend int* grossDailyQtySold();
   friend int* grossDailyUpdate();
   friend int* grossSales();
   
-  // static funcs
+// static funcs
   static void setCorpInventory();
   static void setCorpQtySold(int initial_value);
   static void requestStoreAmt(int& output);
@@ -26,25 +26,26 @@ class Inventory {
   static void getMenuChoice(int& choice);
   static void printStoreInfo(int& input, int numOfStores);
   static void printModelInfo(int& input);
-  // static void printCompanySales();
   
-  // constructor
+// constructor
   Inventory();
 
  private:
 
-  // functions
-   
-  int randomize(int upperBound,int lowerBound);  // non-static => particular to a given instance
-  static int randomizeStatic(int upperBound,int lowerBound);  // static => method for shared data among the instances
+// functions
+
+// non-static => particular to a given instance
+  int randomize(int upperBound,int lowerBound);
+// static => method for shared data among the instances   
+  static int randomizeStatic(int upperBound,int lowerBound);  
   
   // data
   
   // non-static
   int models;
   int money;
-  int stock[20];         // preinitialize all stock entries to -1 upon calling the constructor 
-  int sold[20] = {0};   // preinitialize all sold entries to 0 => not being sold
+  int stock[20];
+  int sold[20] = {0};
 
   
   // static

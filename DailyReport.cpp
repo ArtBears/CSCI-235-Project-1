@@ -1,3 +1,4 @@
+// short complilaton command : make
 // complilaton command : g++ Inventory.cpp DailyReport.cpp -std=gnu++11
 // (C++11 is required to access modern stl, particularly randomization methods)
 #include "./Inventory.h"
@@ -40,7 +41,7 @@ int main (int argc, char* argv[]) {
   int *sales;
   int totalSales = 0;
   int totalShirtsSold = 0;
-  int choice1;
+  int choice1 = 0;
   int menuChoice;
   int numOfStores;
 

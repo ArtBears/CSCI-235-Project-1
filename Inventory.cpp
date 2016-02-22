@@ -13,8 +13,8 @@ int Inventory::corpInventory[20];
 int Inventory::corpQtySold[20];
 
 // static methods
-// static version; NOTE: no need for second 'static' keyword
 
+// static => method for shared random data among the instances  
 int Inventory::randomizeStatic(int upperBound, int lowerBound) {
     // create a random device used to seed the random number generator mt 
     random_device rd;
@@ -25,21 +25,23 @@ int Inventory::randomizeStatic(int upperBound, int lowerBound) {
     return dist(mt);
 }
 
+// Randomly sets each model of shirt to a number between
+//    600 & 2000 for the inventory at corp
 void Inventory::setCorpInventory() {
-  
-  cout << "set the corporation's inventory" << endl;
   for (int i = 0; i < 20; i++) {
     corpInventory[i] = randomizeStatic(2000,600);
   }
   
 }
 
+// Sets the initial corp qty sold to initial_value
 void Inventory::setCorpQtySold(int initial_value){
 	for(int i = 0; i < 20; i++){
 		corpQtySold[i] = initial_value;
 	}
 }
 
+// Gets input from user as to how many stores they want
 void Inventory::requestStoreAmt(int& output){
   cin >> output;
   while(cin.fail()){
@@ -52,6 +54,7 @@ void Inventory::requestStoreAmt(int& output){
   cin.ignore(256, '\n');
 }
 
+// User interface to access stats
 void Inventory::statMenu(int& input){
   cout << "What would you like to see? " << endl
        << "1) SHOW A STORE'S INVENTORY"<< endl
@@ -69,7 +72,7 @@ void Inventory::statMenu(int& input){
   
 }
 
-// give users instructions based on their choices
+// Give users instructions based on their choices
 void Inventory::getMenuChoice(int& choice){
   switch(choice){
     case 1:
@@ -84,6 +87,7 @@ void Inventory::getMenuChoice(int& choice){
   }
 }
 
+// Gets input from user about which store's info they want to see
 void Inventory::printStoreInfo(int& input, int numOfStores){
   cerr << "Please type a number between 1 and " << numOfStores << ": ";
   cin >> input;
@@ -95,6 +99,8 @@ void Inventory::printStoreInfo(int& input, int numOfStores){
   }
   input = input - 1;
 }
+
+// Gets input from user about which model's info they want to see 
 void Inventory::printModelInfo(int& input){
   cin >> input;
   while(input > 20 || input < 1 || cin.fail()){
@@ -105,7 +111,6 @@ void Inventory::printModelInfo(int& input){
   }
   input = input - 1;
 }
-// void Inventory::printCompanySales(){}// not sure if I will use
 
 
 // non-static methods
@@ -121,6 +126,7 @@ int Inventory::randomize(int upperBound, int lowerBound) {
     return dist(mt);
 }
 
+// Returns the amount sold of a specific model.
 int Inventory::getModelsSold(int mdl) {
   if (mdl < 0 || mdl > 19) {
     cerr << "Error. There are 20 models. Pick a number between 0 and 19." << endl;
@@ -129,6 +135,7 @@ int Inventory::getModelsSold(int mdl) {
   return sold[mdl];
 } 
 
+// Simulates a day worth of sales
 void Inventory::salesSimulation() {
   for (int i = 0; i < 20; i++) {
     if (stock[i] != -1) {
@@ -141,6 +148,7 @@ void Inventory::salesSimulation() {
   }
 }
 
+// Returns the total amount of money a specifice store made
 int Inventory::getDailySales() {
   int total = 0;
   for (int i = 0; i < 20; i++) {
@@ -149,6 +157,7 @@ int Inventory::getDailySales() {
   return total;
 }
 
+// Prints how many shirts a specific store has on sale
 void Inventory::getShirtCount(){
   int shirtsAvailable = 0;
   for(int i = 0; i < 20; i++){
