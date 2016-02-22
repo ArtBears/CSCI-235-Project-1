@@ -53,13 +53,60 @@ void Inventory::requestStoreAmt(int& output){
   cin.ignore(256, '\n');
 }
 
-void Inventory::statMenu(){
+void Inventory::statMenu(int& input){
   cout << "What would you like to see? " << endl
        << "1) SHOW A STORE'S INVENTORY"<< endl
        << "2) SHOW HOW MANY OF A SHIRT WERE SOLD TODAY"<< endl
        << "3) SHOW HUNTER INC.'S GROSS SALES " << endl
        << "4) QUIT"<< endl;
+  
+  cin >> input;
+  while(input > 4 || input < 0 || cin.fail()){
+    cerr << "Please type a number between 1 and 4: ";
+    cin.clear();
+    cin.ignore(256, '\n');
+    cin >> input;
+  }
+  
 }
+
+// give users instructions based on their choices
+void Inventory::getMenuChoice(int& choice){
+  switch(choice){
+    case 1:
+      cout << "Which store would you like to see sales for?" << endl;
+      break;
+    case 2:
+      cout << "Which shirt would you like to see sales for? (Enter a number from 1 to 20)" << endl; 
+      break;
+    case 3:
+      cout << "Here are the company's gross sales: " << endl;
+      break;
+  }
+}
+
+void Inventory::printStoreInfo(int& input, int numOfStores){
+  cerr << "Please type a number between 1 and " << numOfStores << ": ";
+  cin >> input;
+  while(input > numOfStores || input < 1 || cin.fail()){
+    cerr << "Please type a number between 1 and " << numOfStores << ": ";
+    cin.clear();
+    cin.ignore(256, '\n');
+    cin >> input;
+  }
+  input = input - 1;
+}
+void Inventory::printModelInfo(int& input){
+  cin >> input;
+  while(input > 20 || input < 1 || cin.fail()){
+    cerr << "Please type a number between 1 and 20: ";
+    cin.clear();
+    cin.ignore(256, '\n');
+    cin >> input;
+  }
+  input = input - 1;
+}
+// void Inventory::printCompanySales(){}// not sure if I will use
 
 
 // non-static methods

@@ -21,7 +21,11 @@ class Inventory {
   static void setCorpInventory();
   static void setCorpQtySold(int initial_value);
   static void requestStoreAmt(int& output);
-  static void statMenu();
+  static void statMenu(int& input);
+  static void getMenuChoice(int& choice);
+  static void printStoreInfo(int& input, int numOfStores);
+  static void printModelInfo(int& input);
+  // static void printCompanySales();
   
   // constructor
   Inventory();

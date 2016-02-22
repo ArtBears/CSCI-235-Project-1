@@ -13,7 +13,7 @@ using namespace std;
   * the address of the result.
 **/
 int* grossDailyQtySold() {
-  return Inventory::corpQtySold;  //returns a reference to an address
+  return Inventory::corpQtySold;  
 }
 
 int* grossDailyUpdate() {
@@ -46,6 +46,8 @@ int main (int argc, char* argv[]) {
   Inventory::setCorpInventory();
   Inventory::setCorpQtySold(0);
 
+  int choice1;
+  int menuChoice;
   int numOfStores;
 
 // do run function -> if input is not #
@@ -62,6 +64,24 @@ int main (int argc, char* argv[]) {
   
   cout << numOfStores << endl;
   Inventory* stores = new Inventory[numOfStores];
+  Inventory::statMenu(choice1);
+  switch(choice1){
+    case 1:
+      Inventory::getMenuChoice(choice1);
+      Inventory::printStoreInfo(menuChoice, numOfStores);
+      break;
+    case 2:
+      Inventory::getMenuChoice(choice1);
+      Inventory::printModelInfo(menuChoice);
+      break;
+    case 3:
+      Inventory::getMenuChoice(choice1);
+      
+      break;
+    case 4:
+      exit(EXIT_SUCCESS);
+      break;
+  }
   int *mods;
   mods = grossSales();
   for (int i = 0; i < 20; i++) {
