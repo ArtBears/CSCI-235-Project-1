@@ -80,6 +80,8 @@ int main (int argc, char* argv[]) {
 // 2) Show How many shirts were sold of a particular model
 // 3) Show Hunter Inc's gross sales
 // 4) Exit the program 
+    
+// Try to change this in order to take away a lot of the menu fluff
     switch(choice1){
       case 1:
         Inventory::getMenuChoice(choice1);
